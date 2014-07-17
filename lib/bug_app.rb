@@ -23,32 +23,45 @@ class Bugs
       Nebraska: {name: "Channel Catfish"}
     }
     @states = %w(Hawaii California Colorado Utah Wyoming South_Dakota Nebraska)
+
+    @bug = { first_name: "Elmer",
+             last_name: "Fudd",
+             street: "1062 Delaware St.",
+             state: "CO",
+             zipcode: 80204,
+             "Hawaii" => "Humuhumunukunukuapua'a",
+             states: %w(Hawaii California Colorado Utah Wyoming South_Dakota Nebraska)
+    }
   end
 
   def greeting
-    "Hi, my name is #{@users[:first_name]} #{@users[:last_name]}"
+    "Hi, my name is #{@bug[:first_name]} #{@bug[:last_name]}"
   end
 
   def street_address
-    "I live on #{@user["street"]}"
+    "I live on #{@bug[:street]}"
   end
 
   def state
-    "I live in #{@user[:state]}"
+    "I live in #{@bug[:state]}"
   end
 
-  def zip
-    "My zipcode is #{@user[:zip]}"
+  def zip_code
+    "My zipcode is #{@bug[:zipcode]}"
   end
 
   def fish(state)
-    @state_fish[state]
+    @bug[state]
   end
 
   def states(letter)
     result = []
-    @states.each do |state|
-      result.pop(state) if state[0] == letter
+    @bug[:states].each do |state|
+      p state[0]
+      p letter
+      if state[0] == letter
+        result << state
+      end
     end
   end
 
